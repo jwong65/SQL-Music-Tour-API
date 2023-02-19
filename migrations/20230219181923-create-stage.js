@@ -6,7 +6,8 @@ module.exports = {
       stage_id: {
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       stage_name: {
         type: Sequelize.STRING,
