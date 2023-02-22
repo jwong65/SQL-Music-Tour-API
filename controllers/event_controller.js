@@ -5,7 +5,9 @@ const { Event } = db
 //INDEX
 events.get('/', async(req, res)=>{
     try{
-        const foundEvent = await Event.findAll()
+        const foundEvent = await Event.findAll({
+            order: 'date desc'
+        })
         res.status(200).json(foundEvent)
     }catch (error){
         res.status(500).json(error)
@@ -67,4 +69,5 @@ events.delete('/:id', async(req, res)=>{
         res.status(500).json(error)
     }
 })
+
 module.exports = events
