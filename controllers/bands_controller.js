@@ -35,7 +35,6 @@ bands.post('/', async (req, res) => {
         res.status(500).json(err)
     }
 })
-
 // DELETE A BAND
 bands.delete('/:id', async (req, res) => {
     try {
