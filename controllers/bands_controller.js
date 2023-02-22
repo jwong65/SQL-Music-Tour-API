@@ -35,6 +35,22 @@ bands.post('/', async (req, res) => {
         res.status(500).json(err)
     }
 })
+//UPDATE BAND
+bands.put('/:id', async (req, res)=>{
+    try{
+        const updatedBand = await Band.update(req.body,
+        {
+            where:{
+                band_id: req.params.id
+            }
+        })
+        res.status(200).json({
+            message: `Band has been successfully updated ${updatedBand}`
+        })
+    } catch(error){
+        res.status(500).json(error)
+    }
+})
 // DELETE A BAND
 bands.delete('/:id', async (req, res) => {
     try {
