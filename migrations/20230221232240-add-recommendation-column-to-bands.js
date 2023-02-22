@@ -5,7 +5,7 @@ const { DataTypes } = require('sequelize')
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.addColumn(  
-      'Bands',
+      'bands',
       'recommendations',
       { type:DataTypes.STRING}
 
@@ -20,7 +20,7 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
     await queryInterface.removeColumn(
-      'Bands',
+      'bands',
       'recommendations',
     )
     /**
