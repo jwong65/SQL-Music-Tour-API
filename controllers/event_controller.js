@@ -5,7 +5,9 @@ const { Event } = db
 //INDEX
 events.get('/', async(req, res)=>{
     try{
-        const foundEvent = await Event.findAll()
+        const foundEvent = await Event.findAll({
+            order: [['date', 'DESC']]
+        })
         res.status(200).json(foundEvent)
     }catch (error){
         res.status(500).json(error)
