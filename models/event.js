@@ -11,16 +11,16 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Event.belongsToMany( Stage, {
         foreignKey:'event_id',
-        as: 'stages',
+        as: 'stage',
         through: StageEvent
       })
       Event.hasMany(MeetGreet, {
         foreignKey: 'event_id',
-        as: 'meet_greets'
+        as: 'meet_greet'
       })
       Event.hasMany(SetTime,{
         foreignKey: 'event_id',
-        as: 'set_times'
+        as: 'set_time'
       })
     }
   }

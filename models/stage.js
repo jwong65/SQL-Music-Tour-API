@@ -9,12 +9,16 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({Event, StageEvent}) {
+    static associate({Event, StageEvent, SetTime}) {
       // define association here
       Stage.belongsToMany( Event, {
         foreignKey: 'stage_id',
-        as: 'events',
+        as: 'event',
         through: StageEvent
+      })
+      Stage.belongsToMany(SetTime,{
+        foreignKey: 'stage_id',
+        as: 'set_time'
       })
     }
   }
