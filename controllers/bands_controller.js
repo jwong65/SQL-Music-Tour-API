@@ -1,7 +1,8 @@
 const bands = require ('express').Router()
 const db = require('../models')
 
-const { Band, MeetGreet, Event } = db;
+const { Band, MeetGreet, Event, SetTime } = db;
+
 
 bands.get('/', async(req,res)=>{
     try{
@@ -11,24 +12,39 @@ bands.get('/', async(req,res)=>{
         res.status(500).json(error)
     }
 })
-// FIND A SPECIFIC BAND
+//FIND A SPECIFIC BAND
 bands.get('/:name', async (req, res) => {
     try {
         const foundBand = await Band.findOne({
             where: { name: req.params.name },
-            as: 'meet_greets',
-            include: {model: Event, as: "event"}
-        },
-        {
-            model: setTime,
-            as: 'set_times',
-            include: {model: Event, as: "event"}
-        })
+            include: [
+                {   model: MeetGreet,
+                    as: "meet_greets",
+                    include:{
+                        model: Event,
+                        as: "event",
+                        //where: {name:{[Op.like]: `%${req.query.event ? req.query.event: ''}%`}}
+                    }
+                },
+                {
+                    model: SetTime,
+                    as: 'Set_Times',
+                    include: {
+                        model: Event, 
+                        as: "event",
+                        //where: {name: {[Op.like]: `%${req.query.event ? req.query.event: ''}%`}}
+                    }
+                }
+    ]
+    })
+        
         res.status(200).json(foundBand)
     } catch (error) {
+        console.log(error)
         res.status(500).json(error)
     }
 })
+
 
 // CREATE A BAND
 bands.post('/', async (req, res) => {

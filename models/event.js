@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       })
       Event.hasMany(SetTime,{
         foreignKey: 'event_id',
-        as: 'set_times'
+        as: 'Set_Times'
       })
     }
   }
