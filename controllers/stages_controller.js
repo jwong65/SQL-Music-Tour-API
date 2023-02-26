@@ -12,10 +12,10 @@ stages.get('/', async(req, res)=>{
         res.status(500).json(error)
 }})
 //FIND SPECIFC
-stages.get('/:name', async(req,res)=>{
+stages.get('/:stage_name', async(req,res)=>{
     try{
         const foundStage = await Stage.findOne({
-            where: {name: req.params.stage_name}
+            where: {stage_name: req.params.stage_name}
         })
         res.status(200).json(foundStage)
     }catch(error){
