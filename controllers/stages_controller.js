@@ -15,7 +15,7 @@ stages.get('/', async(req, res)=>{
 stages.get('/:name', async(req,res)=>{
     try{
         const foundStage = await Stage.findOne({
-            where: {name: req.params.name}
+            where: {name: req.params.stage_name}
         })
         res.status(200).json(foundStage)
     }catch(error){
